@@ -1,0 +1,9 @@
+
+@import "tailwindcss";
+
+@theme{
+ --container-container : 98%;
+ --color-navItems : #FFFFFF;
+ --font-roboto :'Roboto', sans-serif;
+ --color-dataColor : #344767;
+}
