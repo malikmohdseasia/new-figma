@@ -11,7 +11,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout isOpen={isOpen} setIsOpen={setIsOpen} />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard isOpen={isOpen} />} />
         </Route>
       </Routes>
     </BrowserRouter>

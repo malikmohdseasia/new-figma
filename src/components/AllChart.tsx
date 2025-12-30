@@ -3,7 +3,7 @@ import BarChart from "./BarChart";
 
 const AllChart = () => {
   return (
-    <div className="grid grid-cols-3 gap-6 my-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-6 my-10">
       <div className="shadow-[0px_2px_6px_0px_#00000040] rounded-lg p-4">
         <div className="-mt-10 ">
           <BarChart
@@ -32,7 +32,7 @@ const AllChart = () => {
         </div>
       </div>
 
-      <div className="shadow-[0px_2px_6px_0px_#00000040] rounded-lg p-4">
+      <div className="shadow-[0px_2px_6px_0px_#00000040] rounded-lg p-4 ">
         <div className="-mt-10">
           <BarChart
             data={[25, 18, 240, 260, 450, 320, 190, 210, 500]}

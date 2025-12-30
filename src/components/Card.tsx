@@ -36,11 +36,11 @@ const Card = () => {
   ];
 
   return (
-    <div className="my-8 flex gap-5 ">
+    <div className="my-8 flex flex-col lg:flex-row  gap-5  ">
       {items.map((item, index) => (
         <div
           key={index}
-          className="rounded-xl p-3 flex-1 shadow-[0px_2px_6px_0px_#00000040]"
+          className="rounded-xl p-3 flex-1 shadow-[0px_2px_6px_0px_#00000040] my-2 lg:my-0"
         >
           <div className="relative">
             <div

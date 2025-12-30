@@ -5,12 +5,7 @@ import img4 from "../assets/LastComponent/image4.svg";
 import img5 from "../assets/LastComponent/image5.svg";
 
 const TopSellingProducts = () => {
-  const titleItems = [
-    { title: "PRODUCT" },
-    { title: "VALUE" },
-    { title: "ADS SPENT" },
-    { title: "REFUNDS" },
-  ];
+  const titleItems = ["PRODUCT", "VALUE", "ADS SPENT", "REFUNDS"];
 
   const items = [
     {
@@ -60,81 +55,96 @@ const TopSellingProducts = () => {
     },
   ];
 
-  const footerItems = ["Creative Tim", "About Us", "Blog", "License"];
-
   return (
-    <>
-      <div className="shadow-[0px_2px_6px_0px_#00000040] p-5 rounded-xl">
-  <h1 className="font-roboto text-dataColor font-bold mb-4">
-    Top Selling Products
-  </h1>
+     <>
+    <div className="shadow-[0px_2px_6px_0px_#00000040] p-5 rounded-xl">
+      <h1 className="font-roboto text-dataColor font-bold mb-4 text-center lg:text-start">
+        Top Selling Products
+      </h1>
 
-  {/* Table Header */}
-  <div className="grid grid-cols-4 text-sm font-roboto text-[#7B809A] mb-3">
-    {titleItems.map((item, index) => (
-      <div key={index}>{item.title}</div>
-    ))}
-  </div>
-
-  <hr className="border border-[#F0F2F5] my-3 w-full" />
-
-  {/* Table Rows */}
-  <div className="flex flex-col ">
-    {items.map((item, index) => (
-      <div key={index}>
-        <div className="grid grid-cols-4 items-center text-sm font-roboto text-dataColor gap-4 py-2 ">
-          {/* PRODUCT Column */}
-          <div className="flex gap-4 items-center">
-            <img
-              src={item.svg}
-              alt={item.title}
-              className="w-10 h-10 object-contain"
-            />
-            <div>
-              <p className="font-bold">{item.title}</p>
-              <p className="font-normal text-[#7B809A]">{item.orders}</p>
-            </div>
-          </div>
-
-          {/* VALUE Column */}
-          <div>
-            <p className="text-[#7B809A]">{item.value}</p>
-          </div>
-
-          {/* ADS SPENT Column */}
-          <div>
-            <p className="text-[#7B809A]">{item.ads}</p>
-          </div>
-
-          {/* REFUNDS Column */}
-          <div className="flex items-center gap-2">
-            <p className="text-[#7B809A]">{item.refund}</p>
-            {item.icon}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <hr className="border border-[#F0F2F5] my-2 w-full" />
+      {/* 🔹 Desktop Header */}
+      <div className="hidden md:grid grid-cols-4 text-sm text-[#7B809A] mb-3">
+        {titleItems.map((title, i) => (
+          <div key={i}>{title}</div>
+        ))}
       </div>
-    ))}
-  </div>
-</div>
 
+      <hr className="hidden md:block border-[#F0F2F5] my-3" />
 
-      <div className="flex items-center pt-20 justify-between">
-        <p className="text-[#7B809A] ">
-          © 2022, made with ❤️ by{" "}
-          <span className="font-bold"> Creative Tim </span>for a better web.
-        </p>
-        <div className="flex items-center gap-7.75">
-          {footerItems.map((item, index) => (
-            <div key={index} className="">
-              <p className="font-roboto text-sm text-[#7B809A]">{item}</p>
+      {/* 🔹 Rows */}
+      <div className="flex flex-col gap-4 md:gap-0">
+        {items.map((item, index) => (
+          <div key={index}>
+            {/* Desktop Row */}
+            <div className="hidden md:grid grid-cols-4 items-center gap-4 py-3">
+              <div className="flex gap-4 items-center">
+                <img src={item.svg} className="w-10 h-10" />
+                <div>
+                  <p className="font-bold">{item.title}</p>
+                  <p className="text-[#7B809A]">{item.orders}</p>
+                </div>
+              </div>
+
+              <p className="text-[#7B809A]">{item.value}</p>
+              <p className="text-[#7B809A]">{item.ads}</p>
+              <div className="flex items-center gap-2 text-[#7B809A]">
+                {item.refund} {item.icon}
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* 📱 Mobile Card */}
+            <div className="md:hidden border border-[#F0F2F5] rounded-lg p-4 space-y-3">
+              <div className="flex gap-3 items-center">
+                <img src={item.svg} className="w-10 h-10" />
+                <div>
+                  <p className="font-bold">{item.title}</p>
+                  <p className="text-sm text-[#7B809A]">{item.orders}</p>
+                </div>
+              </div>
+
+              <div className="flex justify-between text-sm">
+                <span className="text-[#7B809A]">Value</span>
+                <span>{item.value}</span>
+              </div>
+
+              <div className="flex justify-between text-sm">
+                <span className="text-[#7B809A]">Ads Spent</span>
+                <span>{item.ads}</span>
+              </div>
+
+              <div className="flex justify-between text-sm items-center">
+                <span className="text-[#7B809A]">Refunds</span>
+                <span className="flex gap-1 items-center">
+                  {item.refund} {item.icon}
+                </span>
+              </div>
+            </div>
+
+            <hr className="hidden md:block border-[#F0F2F5] my-2" />
+          </div>
+        ))}
       </div>
-    </>
+    </div>
+
+     <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
+      <p className="text-[#7B809A] text-sm text-center md:text-left">
+        © 2022, made with ❤️ by{" "}
+        <span className="font-bold">Creative Tim</span> for a better web.
+      </p>
+
+      <div className="flex gap-6">
+        {["Creative Tim", "About Us", "Blog", "License"].map((item, index) => (
+          <p
+            key={index}
+            className="text-sm text-[#7B809A] hover:text-gray-600 cursor-pointer"
+          >
+            {item}
+          </p>
+        ))}
+      </div>
+    </div>
+
+   </>
   );
 };
 

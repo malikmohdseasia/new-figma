@@ -5,24 +5,25 @@ import BarChart from "./BarChart"
 import AllChart from "./AllChart"
 import TopSellingProducts from "./TopSellingProducts"
 
-const Dashboard = () => {
+const Dashboard = ({isOpen}) => {
 
 
     const items =[{title:"profile", svg:ProfileIcon}, {title:"setting", svg:settingIcon}, {title:"notification", svg: notificationIcon, svg2:notificationIcon2}]
-
+console.log(isOpen)
   return (
 
     <div className="p-5 ">
-
-    <div className="flex justify-between">
+        {
+            isOpen && <div>
+    <div className="flex flex-col lg:flex-row justify-between">
         <div>
             <div className="flex items-center gap-2">
 
             {HomeIcon} <p>/</p>
             <p className="font-normal font-roboto text-sm text-[#7B809A]">Pages</p> <p>/</p>
-            <p className="font-normal font-roboto text-sm text-[#344767]">Analyics</p>
+            <p className="font-normal font-roboto text-sm text-dataColor">Analyics</p>
             </div>
-            <h1 className="font-bold font-roboto text-dataColor">Analytics</h1>
+            <h1 className="font-bold font-roboto text-dataColor my-2 lg:my-0">Analytics</h1>
         </div>
 
         <div className="flex flex-wrap gap-6 items-center">
@@ -48,6 +49,8 @@ const Dashboard = () => {
     <Card/>
    <AllChart/>
    <TopSellingProducts/>
+   </div>
+        }
     </div>
 
   )
