@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { toast } from "react-toastify";
 
-const Login = () => {
+const Login = ({ setModalShow}) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -74,12 +75,16 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
+    toast.success('Successfully Login!')
 
-    localStorage.setItem("userEmail", email);
+    localStorage.setItem('userEmail', JSON.stringify({email:email}));
     navigate("/dashboard");
+     setModalShow(false)
   };
 
   const strength = getPasswordStrength();
+
+  const passwordBarItems = [1,2,3,4]
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] px-4">
@@ -135,7 +140,7 @@ const Login = () => {
 
             {/* Strength Bar */}
             <div className="flex gap-1 mt-2">
-              {[1, 2, 3, 4].map((lvl) => (
+              {passwordBarItems.map((lvl) => (
                 <span
                   key={lvl}
                   className={`h-1 flex-1 rounded-full ${
@@ -163,7 +168,7 @@ const Login = () => {
             type="submit"
             className="w-full py-3 rounded-xl bg-white text-indigo-700
                        font-bold text-lg hover:scale-[1.02]
-                       transition-all duration-300 shadow-lg"
+                       transition-all duration-300 shadow-lg cursor-pointer"
           >
             Login
           </button>

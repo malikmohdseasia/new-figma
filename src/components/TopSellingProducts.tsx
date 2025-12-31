@@ -64,8 +64,8 @@ const TopSellingProducts = () => {
 
       {/* 🔹 Desktop Header */}
       <div className="hidden md:grid grid-cols-4 text-sm text-[#7B809A] mb-3">
-        {titleItems.map((title, i) => (
-          <div key={i}>{title}</div>
+        {titleItems.map((title, index) => (
+          <div key={index}>{title}</div>
         ))}
       </div>
 

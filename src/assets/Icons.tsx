@@ -433,3 +433,56 @@ export const redIcon = [
     />
   </svg>,
 ];
+
+
+export const Logout = [
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.93311 5.04C6.13977 2.64 7.37311 1.66 10.0731 1.66H10.1598C13.1398 1.66 14.3331 2.85333 14.3331 5.83333V10.18C14.3331 13.16 13.1398 14.3533 10.1598 14.3533H10.0731C7.39311 14.3533 6.15977 13.3867 5.93977 11.0267" stroke="#F13E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.0002 8H2.41357" stroke="#F13E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3.89984 5.76667L1.6665 8L3.89984 10.2333" stroke="#F13E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+]
+
+
+
+export const ArrowRight = (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="20" height="20" rx="10" fill="#702DFF" />
+    <path
+      d="M7 5 L13 10 L7 15"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const CicleCross = [
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Circle background */}
+    <rect width="20" height="20" rx="10" fill="#702DFF" />
+
+    {/* Cross */}
+    <path
+      d="M6 6 L14 14 M14 6 L6 14"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+
+]

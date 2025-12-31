@@ -5,17 +5,17 @@ const BarChart = ({
   data,
   categories,
   height = 150,
-  background, // can be gradient string
+  background, 
   type,
   tickInterval,
   max,
-  shadow, // optional box-shadow prop
-}) => {
+  shadow, 
+}:any) => {
   const options = {
     chart: {
       type,
       height,
-      backgroundColor: "transparent", // keep chart background transparent
+      backgroundColor: "transparent", 
       borderRadius: 16,
     },
 
@@ -25,12 +25,13 @@ const BarChart = ({
       categories,
       lineColor: "transparent",
       tickLength: 0,
-     
+
       labels: {
+        rotation: 0, 
         style: {
           color: "#FFFFFF",
-          fontSize: "14px",
-          fontWeight: 400,
+          fontSize: "10px",
+          fontWeight: "400",
         },
       },
     },
@@ -75,7 +76,7 @@ const BarChart = ({
     <div
       className="rounded-2xl p-4"
       style={{
-        background, // can pass linear-gradient string here
+        background,
         boxShadow: shadow || "0px 2px 6px 0px #DC22655C",
       }}
     >
