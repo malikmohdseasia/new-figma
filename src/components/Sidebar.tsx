@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   BottomArrow,
   DashboardIcon,
@@ -22,7 +22,7 @@ import ProfileImg from "../assets/sidebar/Image1.svg";
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const [open, setOpen] = useState(false);
   const [dashboardOpen, setDashboardOpen] = useState(false);
-
+  const navigate  = useNavigate();
 
   const navItems1 = [
     { title: "Dashboards", svg: DashboardIcon, svg2: BottomArrow, route: "/dashboard" },
@@ -45,6 +45,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     { title: "Components", svg: ComponentIcon, svg2: BottomArrow },
     { title: "Changelog", svg: changelogIcon },
   ];
+
+  const handleLogout = ()=>{
+    localStorage.clear('userEmail');
+    navigate('/')
+  }
 
   return (
     <>
@@ -99,11 +104,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                   <div
                     onClick={() => {
                       if(item.title==='Dashboards'){
-                        setDashboardOpen(!dashboardOpen);
+                        setDashboardOpen((pre)=>!pre);
                         setIsOpen((prev)=>!prev)
                       }
                     }}
-                    className="flex items-center justify-between h-12 px-5 cursor-pointer hover:bg-[#4F4F52]"
+                    className={`flex items-center justify-between h-12 px-5 cursor-pointer hover:bg-[#4F4F52]
+                      ${dashboardOpen ? "bg-[#4F4F52]":""}
+                      `}
                   >
                     <div className="flex items-center gap-5">
                       <div className="w-5">{item.svg}</div>
@@ -121,7 +128,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
                   {/* 🔽 DROPDOWN ITEMS */}
                   {dashboardOpen && (
-                    <div className="ml-10 flex flex-col gap-1">
+                    <div className="ml-10 flex flex-col gap-1 ">
                       <NavLink
                         to="/analytics"
                         className="h-10 flex items-center text-sm text-navItems hover:text-white"
@@ -173,6 +180,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             {item.svg2}
           </div>
         ))}
+        <div className="text-navItems cursor-pointer">
+
+        <button
+        onClick={handleLogout}
+        >
+          Logout
+        </button>
+
+         
+        </div>
       </div>
     </>
   );

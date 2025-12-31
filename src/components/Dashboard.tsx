@@ -9,7 +9,6 @@ const Dashboard = ({isOpen}) => {
 
 
     const items =[{title:"profile", svg:ProfileIcon}, {title:"setting", svg:settingIcon}, {title:"notification", svg: notificationIcon, svg2:notificationIcon2}]
-console.log(isOpen)
   return (
 
     <div className="p-5 ">
