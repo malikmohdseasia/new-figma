@@ -25,7 +25,6 @@ const Dashboard = () => {
         <div>
 
             <div className="flex flex-col lg:flex-row justify-between  gap-4">
-  {/* Left Section */}
   <div>
     <div className="flex items-center gap-2">
       {HomeIcon} <p>/</p>
@@ -43,9 +42,7 @@ const Dashboard = () => {
     </h1>
   </div>
 
-  {/* Right Section */}
   <div className="flex flex-row-reverse md:flex-row flex-wrap gap-4 items-center w-full lg:w-auto">
-    {/* Search */}
     <input
       type="search"
       placeholder="Search here"
@@ -61,7 +58,6 @@ const Dashboard = () => {
       "
     />
 
-    {/* Icons */}
     {items.map((item, index) => (
       <div key={index} className="relative">
        <p className="cursor-pointer"> {item.svg}</p>

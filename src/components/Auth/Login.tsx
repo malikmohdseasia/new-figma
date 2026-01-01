@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { toast } from "react-toastify";
 
-const Login = ({ setModalShow}) => {
+const Login = ({ setModalShow }:any) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -15,7 +15,6 @@ const Login = ({ setModalShow}) => {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
-  /* ---------------- Password Strength ---------------- */
   const getPasswordStrength = () => {
     let strength = 0;
     if (password.length >= 8) strength++;
@@ -25,8 +24,7 @@ const Login = ({ setModalShow}) => {
     return strength;
   };
 
-  /* ---------------- LIVE VALIDATION ---------------- */
-  const handleEmailChange = (value) => {
+  const handleEmailChange = (value:any) => {
     setEmail(value);
 
     if (!value) {
@@ -35,28 +33,48 @@ const Login = ({ setModalShow}) => {
       setErrors((prev) => ({ ...prev, email: "Invalid email address" }));
     } else {
       setErrors((prev) => {
-        const { email, ...rest } = prev;
+        const { email, ...rest }:any = prev;
         return rest;
       });
     }
   };
 
-  const handlePasswordChange = (value) => {
+  const handlePasswordChange = (value:any) => {
     setPassword(value);
 
     if (!value) {
-      setErrors((prev) => ({ ...prev, password: "Password is required" }));
-    } else if (!passwordRegex.test(value)) {
-      setErrors((prev) => ({ ...prev, password: "Weak password" }));
+      setErrors((prev) => ({
+        ...prev,
+        password: "Password is required",
+      }));
+    } else if (value.length < 8) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Password must be at least 8 characters",
+      }));
+    } else if (!/[A-Z]/.test(value)) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Password must include one uppercase letter",
+      }));
+    } else if (!/[0-9]/.test(value)) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Password must include one number",
+      }));
+    } else if (!/[@$!%*?&]/.test(value)) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Password must include one special symbol (@$!%*?&)",
+      }));
     } else {
       setErrors((prev) => {
-        const { password, ...rest } = prev;
+        const { password, ...rest }:any = prev;
         return rest;
       });
     }
   };
 
-  /* ---------------- SUBMIT VALIDATION ---------------- */
   const validateForm = () => {
     const err = {};
 
@@ -66,30 +84,34 @@ const Login = ({ setModalShow}) => {
 
     if (!password) err.password = "Password is required";
     else if (!passwordRegex.test(password))
-      err.password = "Weak password";
+      err.password =
+        "Password must be at least 8 characters and include uppercase, number & symbol";
 
     setErrors(err);
     return Object.keys(err).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     if (!validateForm()) return;
-    toast.success('Successfully Login!')
 
-    localStorage.setItem('userEmail', JSON.stringify({email:email}));
+    toast.success("Successfully Login!");
+
+    localStorage.setItem(
+      "userEmail",
+      JSON.stringify({ email: email })
+    );
+
     navigate("/dashboard");
-     setModalShow(false)
+    setModalShow(false);
   };
 
   const strength = getPasswordStrength();
-
-  const passwordBarItems = [1,2,3,4]
+  const passwordBarItems = [1, 2, 3, 4];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] px-4">
       <div className="w-full max-w-md bg-white/20 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30">
-
         <h2 className="text-3xl font-bold text-white text-center">
           Sign In
         </h2>
@@ -98,10 +120,11 @@ const Login = ({ setModalShow}) => {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-
-          {/* Email */}
           <div className="relative">
-            <Mail className="absolute left-4 top-3.5 text-white/60" size={18} />
+            <Mail
+              className="absolute left-4 top-3.5 text-white/60"
+              size={18}
+            />
             <input
               type="email"
               placeholder="Enter your email"
@@ -118,14 +141,18 @@ const Login = ({ setModalShow}) => {
             )}
           </div>
 
-          {/* Password */}
           <div className="relative">
-            <Lock className="absolute left-4 top-3.5 text-white/60" size={18} />
+            <Lock
+              className="absolute left-4 top-3.5 text-white/60"
+              size={18}
+            />
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               value={password}
-              onChange={(e) => handlePasswordChange(e.target.value)}
+              onChange={(e) =>
+                handlePasswordChange(e.target.value)
+              }
               className="w-full bg-white/10 text-white placeholder-white/50
                          px-11 py-3 rounded-xl border border-white/30
                          focus:outline-none focus:ring-2 focus:ring-white/40"
@@ -135,10 +162,13 @@ const Login = ({ setModalShow}) => {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-4 top-3 text-white/60"
             >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              {showPassword ? (
+                <EyeOff size={18} />
+              ) : (
+                <Eye size={18} />
+              )}
             </button>
 
-            {/* Strength Bar */}
             <div className="flex gap-1 mt-2">
               {passwordBarItems.map((lvl) => (
                 <span
@@ -163,7 +193,6 @@ const Login = ({ setModalShow}) => {
             )}
           </div>
 
-          {/* Button */}
           <button
             type="submit"
             className="w-full py-3 rounded-xl bg-white text-indigo-700

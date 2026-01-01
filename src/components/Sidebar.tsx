@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import {
   BottomArrow,
   DashboardIcon,
@@ -21,15 +21,12 @@ import {
   CicleCross,
 } from "../assets/Icons";
 import ProfileImg from "../assets/sidebar/Image1.svg";
-import { toast } from "react-toastify";
-import LogoutWarning from "./Auth/Logout";
 
-const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
+const Sidebar = ({ setIsOpen, setModalShow }: any) => {
   const [open, setOpen] = useState(false);
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [slide, setSlide] = useState<Boolean>(false);
 
-  const navigate = useNavigate();
 
   const navItems1 = [
     {
@@ -57,16 +54,9 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
     { title: "Changelog", svg: changelogIcon },
   ];
 
-  const confirmLogout = () => {
-    localStorage.removeItem("userEmail");
-    navigate("/");
-    toast.success("Successfully Logout!");
-    setModalShow(false);
-  };
-
+  
   return (
     <>
-      {/* 🔹 Hamburger Button (Mobile Only) */}
       <button
         onClick={() => {
           setOpen(!open);
@@ -78,9 +68,8 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
       </button>
 
       <div
-        className={`hidden lg:flex absolute top-5 rotate-180 ${
-          slide ? "left-64" : "left-20"
-        } z-50
+        className={`hidden lg:flex absolute top-5 rotate-180 ${slide ? "left-64" : "left-20"
+          } z-50
           transition-all duration-300 ease-in-out
          `}
         onClick={() => setSlide((pre) => !pre)}
@@ -88,37 +77,8 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
         {ArrowRight}
       </div>
 
-      {modalShow && (
-        <div className="absolute  transform top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex items-center justify-center">
-          <div className="w-full md:w-100 rounded-xl bg-white p-6 shadow-lg">
-            <h2 className="text-lg font-semibold text-gray-900">
-              Confirm Logout
-            </h2>
+     
 
-            <p className="mt-2 text-sm text-gray-500">
-              Are you sure you want to logout?
-            </p>
-
-            <div className="mt-6 flex justify-end gap-3">
-              <button
-                onClick={() => setModalShow(false)}
-                className="rounded-lg px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={confirmLogout}
-                className="rounded-lg bg-indigo-500 px-4 py-2 text-sm text-white hover:bg-red-700"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 🔹 Sidebar */}
       <div
         className={`
     fixed lg:static top-0 left-0 z-20 no-scrollbar
@@ -134,12 +94,10 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
   `}
       >
 
-        <div onClick={()=>setOpen(false)} className="absolute top-3 right-2 lg:hidden">{CicleCross}</div>
-        {/* Logo */}
+        <div onClick={() => setOpen(false)} className="absolute top-3 right-2 lg:hidden">{CicleCross}</div>
         <div
-          className={`flex items-center gap-2 ${
-            !slide ? "px-4 justify-center" : "px-0"
-          } `}
+          className={`flex items-center gap-2 ${!slide ? "px-4 justify-center" : "px-0"
+            } `}
         >
           {smileIcons}
           {slide && (
@@ -150,12 +108,10 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
         </div>
 
         <hr
-          className={`border border-navItems my-4 ${
-            !slide ? " w-[30%] mx-auto" : "w-100%"
-          }`}
+          className={`border border-navItems my-4 ${!slide ? " w-[30%] mx-auto" : "w-100%"
+            }`}
         />
 
-        {/* Profile */}
         <div className="flex justify-between items-center px-5">
           <div className="flex gap-2 items-center">
             <img src={ProfileImg} className="w-8 h-8 rounded-full" />
@@ -165,15 +121,12 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
         </div>
 
         <hr
-          className={`border border-navItems my-4 ${
-            !slide ? " w-[30%] mx-auto" : "w-100%"
-          }`}
+          className={`border border-navItems my-4 ${!slide ? " w-[30%] mx-auto" : "w-100%"
+            }`}
         />
 
-        {/* Nav Items */}
         <div className="flex flex-col">
           {navItems1.map((item, index) => {
-            // 🔹 DASHBOARD (Parent)
             if (item.title === "Dashboards") {
               return (
                 <div key={index}>
@@ -182,12 +135,11 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
                     onClick={() => {
                       if (item.title === "Dashboards") {
                         setDashboardOpen((pre) => !pre);
-                        setIsOpen((prev) => !prev);
+                        setIsOpen((prev:any) => !prev);
                       }
                     }}
-                    className={`flex items-center ${
-                      !slide ? "justify-center" : "justify-between"
-                    } h-12 px-5 cursor-pointer hover:bg-[#4F4F52]
+                    className={`flex items-center ${!slide ? "justify-center" : "justify-between"
+                      } h-12 px-5 cursor-pointer hover:bg-[#4F4F52]
                       ${dashboardOpen ? "bg-[#4F4F52] font-bold" : ""}
                       `}
                   >
@@ -200,30 +152,25 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
                       )}
                     </div>
 
-                    {/* rotate arrow */}
                     {slide && (
                       <div
-                        className={`transition-transform duration-300 ease-in-out ${
-                          dashboardOpen ? "rotate-180" : ""
-                        }`}
+                        className={`transition-transform duration-300 ease-in-out ${dashboardOpen ? "rotate-180" : ""
+                          }`}
                       >
                         {BottomArrow}
                       </div>
                     )}
                   </NavLink>
 
-                  {/* 🔽 DROPDOWN ITEMS */}
                   {dashboardOpen && (
                     <div
-                      className={`flex flex-col gap-1 ${
-                        !slide ? "items-center" : ""
-                      } `}
+                      className={`flex flex-col gap-1 ${!slide ? "items-center" : ""
+                        } `}
                     >
                       <NavLink
                         to={"/dashboard/analytics"}
                         className={({ isActive }) =>
-                          ` ${
-                            isActive ? "bg-[#E91F63] font-bold" : ""
+                          ` ${isActive ? "bg-[#E91F63] font-bold" : ""
                           } h-10  px-5 flex items-center text-sm text-navItems hover:text-white `
                         }
                       >
@@ -234,8 +181,7 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
                       <NavLink
                         to="/dashboard/smart-home"
                         className={({ isActive }) =>
-                          ` ${
-                            isActive ? "bg-[#E91F63] font-bold" : ""
+                          ` ${isActive ? "bg-[#E91F63] font-bold" : ""
                           } h-10  px-5 flex items-center text-sm text-navItems hover:text-white`
                         }
                       >
@@ -252,14 +198,12 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
           })}
         </div>
 
-        {/* Pages */}
         <h1 className="text-xs font-bold text-navItems my-4">Pages</h1>
         {navItems2.map((item, index) => (
           <div
             key={index}
-            className={`flex  h-12 px-5 items-center ${
-              !slide ? "justify-center" : "justify-between"
-            }`}
+            className={`flex  h-12 px-5 items-center ${!slide ? "justify-center" : "justify-between"
+              }`}
           >
             <div className="flex gap-5 items-center">
               <div className="w-5">{item.svg}</div>
@@ -272,12 +216,10 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
         ))}
 
         <hr
-          className={`border border-navItems my-4 ${
-            !slide ? " w-[30%] mx-auto" : "w-100%"
-          }`}
+          className={`border border-navItems my-4 ${!slide ? " w-[30%] mx-auto" : "w-100%"
+            }`}
         />
 
-        {/* Docs */}
         <h1 className="text-xs font-bold text-navItems my-4">DOCS</h1>
         {navItems3.map((item, index) => (
           <div
@@ -293,16 +235,14 @@ const Sidebar = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
             {slide && <div>{item.svg2}</div>}
           </div>
         ))}
-        <div className="text-navItems cursor-pointer flex items-center px-5 gap-2">
+        <div
+          className="text-navItems cursor-pointer flex items-center px-5 gap-2 hover:text-red-500 transition"
+          onClick={() => setModalShow(true)}
+        >
           {Logout}
-          {slide && (
-            <LogoutWarning
-              modalShow={modalShow}
-              setModalShow={setModalShow}
-              setIsOpen={setIsOpen}
-            />
-          )}
+          {slide && <span>Logout</span>}
         </div>
+
       </div>
     </>
   );

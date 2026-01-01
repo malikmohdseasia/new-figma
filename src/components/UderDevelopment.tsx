@@ -2,7 +2,6 @@ const UnderDevelopment = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="text-center max-w-md">
-        {/* Icon */}
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-indigo-100">
           <svg
             className="h-10 w-10 text-indigo-600"
@@ -19,7 +18,6 @@ const UnderDevelopment = () => {
           </svg>
         </div>
 
-        {/* Text */}
         <h1 className="text-3xl font-semibold text-gray-900">
           Page Under Development
         </h1>
@@ -28,7 +26,6 @@ const UnderDevelopment = () => {
           Please check back soon 🚀
         </p>
 
-        {/* Button */}
         <button
           onClick={() => window.history.back()}
           className="mt-6 rounded-lg bg-indigo-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-indigo-700 transition"
