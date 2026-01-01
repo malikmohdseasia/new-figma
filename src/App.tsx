@@ -59,6 +59,7 @@ const App = () => {
           <Route
             path="/dashboard/analytics"
             element={
+              <ErrorBoundary>
               <ProtectedRoute>
                 <Dashboard
                   isOpen={isOpen}
@@ -66,6 +67,7 @@ const App = () => {
                   setModalShow={setModalShow}
                 />
               </ProtectedRoute>
+              </ErrorBoundary>
             }
           />
           <Route

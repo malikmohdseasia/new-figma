@@ -14,7 +14,7 @@ const LogoutWarning = ({ setModalShow, setIsOpen }:any) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center ">
-      <div className="w-full max-w-sm rounded-xl bg-white p-6 shadow-lg">
+      <div className=" w-60 lg:w-100 rounded-xl bg-white p-6 shadow-lg">
         <h2 className="text-lg font-semibold">Confirm Logout</h2>
 
         <p className="mt-2 text-sm text-gray-500">
@@ -24,14 +24,14 @@ const LogoutWarning = ({ setModalShow, setIsOpen }:any) => {
         <div className="mt-6 flex justify-end gap-3">
           <button
             onClick={() => setModalShow(false)}
-            className="px-4 py-2 rounded-lg bg-gray-200"
+            className="px-4 py-2 rounded-lg bg-gray-200 cursor-pointer"
           >
             Cancel
           </button>
 
           <button
             onClick={confirmLogout}
-            className="px-4 py-2 rounded-lg bg-[#3E3D45] text-white"
+            className="px-4 py-2 rounded-lg bg-[#3E3D45] text-white cursor-pointer"
           >
             Logout
           </button>

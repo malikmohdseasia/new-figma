@@ -62,7 +62,6 @@ const TopSellingProducts = () => {
         Top Selling Products
       </h1>
 
-      {/* 🔹 Desktop Header */}
       <div className="hidden md:grid grid-cols-4 text-sm text-[#7B809A] mb-3">
         {titleItems.map((title, index) => (
           <div key={index}>{title}</div>
@@ -71,11 +70,9 @@ const TopSellingProducts = () => {
 
       <hr className="hidden md:block border-[#F0F2F5] my-3" />
 
-      {/* 🔹 Rows */}
       <div className="flex flex-col gap-4 md:gap-0">
         {items.map((item, index) => (
           <div key={index}>
-            {/* Desktop Row */}
             <div className="hidden md:grid grid-cols-4 items-center gap-4 py-3">
               <div className="flex gap-4 items-center">
                 <img src={item.svg} className="w-10 h-10" />
@@ -92,7 +89,6 @@ const TopSellingProducts = () => {
               </div>
             </div>
 
-            {/* 📱 Mobile Card */}
             <div className="md:hidden border border-[#F0F2F5] rounded-lg p-4 space-y-3">
               <div className="flex gap-3 items-center">
                 <img src={item.svg} className="w-10 h-10" />

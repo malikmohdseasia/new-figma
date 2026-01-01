@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   
   return (
-    <div className="p-5">
+    <div className="p-5 h-screen overflow-y-auto no-scrollbar">
         <div>
 
             <div className="flex flex-col lg:flex-row justify-between  gap-4">

@@ -5,7 +5,7 @@ import LogoutWarning from "../Auth/Logout";
 const Layout = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
   return (
     <>
-      <div className="w-container flex mx-auto my-2">
+      <div className="w-container flex mx-auto h-screen">
         <Sidebar
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -13,7 +13,7 @@ const Layout = ({ isOpen, setIsOpen, modalShow, setModalShow }: any) => {
           setModalShow={setModalShow}
         />
 
-        <main className="flex-1 p-4 bg-gray-50 overflow-y-auto">
+        <main className="flex-1 p-4 bg-gray-50 overflow-y-auto no-scrollbar">
           <Outlet />
         </main>
       </div>

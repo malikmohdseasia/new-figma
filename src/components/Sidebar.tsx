@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   BottomArrow,
   DashboardIcon,
@@ -27,7 +27,6 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [slide, setSlide] = useState<Boolean>(false);
 
-
   const navItems1 = [
     {
       title: "Dashboards",
@@ -54,13 +53,12 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
     { title: "Changelog", svg: changelogIcon },
   ];
 
-  
   return (
     <>
       <button
         onClick={() => {
           setOpen(!open);
-          setSlide(true)
+          setSlide(true);
         }}
         className={`lg:hidden fixed top-4 left-4 z-20 text-gray-500 text-2xl`}
       >
@@ -68,8 +66,9 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
       </button>
 
       <div
-        className={`hidden lg:flex absolute top-5 rotate-180 ${slide ? "left-64" : "left-20"
-          } z-50
+        className={`hidden lg:flex absolute top-6  ${
+          slide ? "left-60 rotate-180" : "left-20"
+        } z-50
           transition-all duration-300 ease-in-out
          `}
         onClick={() => setSlide((pre) => !pre)}
@@ -77,27 +76,27 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
         {ArrowRight}
       </div>
 
-     
-
       <div
-        className={`
-    fixed lg:static top-0 left-0 z-20 no-scrollbar
-    h-full overflow-y-auto
+        className={` py-5 mt-0 lg:mt-3 
+    fixed lg:static top-0 left-0 z-20 no-scrollbar h-screen lg:h-[95vh]  overflow-y-auto
     bg-[linear-gradient(180deg,#3E3D45_0%,#202020_100%)]
-    p-2 rounded-none lg:rounded-xl
-    transition-all duration-300 ease-in-out   /* 👈 important */
-    ${slide ? "w-64 text-left" : "w-20 text-center"}
+    p-3 rounded-none lg:rounded-xl
+    transition-all duration-300 ease-in-out  
+    ${slide ? "w-60 text-left" : "w-20 text-center"}
     ${open ? "translate-x-0" : "-translate-x-full"}
     lg:translate-x-0
-
-    
   `}
       >
-
-        <div onClick={() => setOpen(false)} className="absolute top-3 right-2 lg:hidden">{CicleCross}</div>
         <div
-          className={`flex items-center gap-2 ${!slide ? "px-4 justify-center" : "px-0"
-            } `}
+          onClick={() => setOpen(false)}
+          className="absolute top-3 right-1 lg:hidden"
+        >
+          {CicleCross}
+        </div>
+        <div
+          className={`flex items-center gap-2 mt-2 ${
+            !slide ? "px-4 justify-center" : "px-0"
+          } `}
         >
           {smileIcons}
           {slide && (
@@ -108,11 +107,12 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
         </div>
 
         <hr
-          className={`border border-navItems my-4 ${!slide ? " w-[30%] mx-auto" : "w-100%"
-            }`}
+          className={`border--0 border-navItems my-4 ${
+            !slide ? " w-[30%] mx-auto" : "w-100%"
+          }`}
         />
 
-        <div className="flex justify-between items-center px-5">
+        <div className="flex justify-between items-center px-3">
           <div className="flex gap-2 items-center">
             <img src={ProfileImg} className="w-8 h-8 rounded-full" />
             {slide && <h1 className="text-sm text-navItems">Brooklyn Alice</h1>}
@@ -120,9 +120,10 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
           {slide && <div>{BottomArrow}</div>}
         </div>
 
-        <hr
-          className={`border border-navItems my-4 ${!slide ? " w-[30%] mx-auto" : "w-100%"
-            }`}
+         <hr
+          className={`border--0 border-navItems my-4 ${
+            !slide ? " w-[30%] mx-auto" : "w-100%"
+          }`}
         />
 
         <div className="flex flex-col">
@@ -130,16 +131,15 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
             if (item.title === "Dashboards") {
               return (
                 <div key={index}>
-                  <NavLink
-                    to={"/dashboard"}
+                  <div
                     onClick={() => {
                       if (item.title === "Dashboards") {
                         setDashboardOpen((pre) => !pre);
-                        setIsOpen((prev:any) => !prev);
                       }
                     }}
-                    className={`flex items-center ${!slide ? "justify-center" : "justify-between"
-                      } h-12 px-5 cursor-pointer hover:bg-[#4F4F52]
+                    className={`flex items-center ${
+                      !slide ? "justify-center" : "justify-between"
+                    } h-12 px-5 cursor-pointer hover:bg-[#4F4F52]
                       ${dashboardOpen ? "bg-[#4F4F52] font-bold" : ""}
                       `}
                   >
@@ -154,42 +154,72 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
 
                     {slide && (
                       <div
-                        className={`transition-transform duration-300 ease-in-out ${dashboardOpen ? "rotate-180" : ""
-                          }`}
+                        className={`transition-transform duration-300 ease-in-out ${
+                          dashboardOpen ? "rotate-180" : ""
+                        }`}
                       >
                         {BottomArrow}
                       </div>
                     )}
-                  </NavLink>
+                  </div>
 
-                  {dashboardOpen && (
+                  <div
+                    className={`
+    overflow-hidden
+    transition-all duration-300 ease-in-out
+    ${
+      dashboardOpen
+        ? "max-h-40 opacity-100 translate-x-0"
+        : "max-h-0 opacity-0 -translate-x-2"
+    }
+  `}
+                  >
                     <div
-                      className={`flex flex-col gap-1 ${!slide ? "items-center" : ""
-                        } `}
+                      className={`flex flex-col gap-1 ${
+                        !slide ? "items-center" : ""
+                      }`}
                     >
                       <NavLink
-                        to={"/dashboard/analytics"}
+                        to="/dashboard/analytics"
                         className={({ isActive }) =>
-                          ` ${isActive ? "bg-[#E91F63] font-bold" : ""
-                          } h-10  px-5 flex items-center text-sm text-navItems hover:text-white `
+                          `
+        h-10 px-5 flex items-center text-sm text-navItems
+        transition-colors duration-300
+        ${isActive ? "bg-[#E91F63] font-bold text-white" : "hover:text-white"}
+        `
                         }
                       >
                         {AIcon}
-                        {slide && <span className="ml-3">Analytics</span>}
+                        <span
+                          className={`ml-8 transition-all duration-300 ${
+                            slide ? "opacity-100 translate-x-0" : " hidden"
+                          }`}
+                        >
+                          Analytics
+                        </span>
                       </NavLink>
 
                       <NavLink
                         to="/dashboard/smart-home"
                         className={({ isActive }) =>
-                          ` ${isActive ? "bg-[#E91F63] font-bold" : ""
-                          } h-10  px-5 flex items-center text-sm text-navItems hover:text-white`
+                          `
+        h-10 px-5 flex items-center text-sm text-navItems
+        transition-colors duration-300
+        ${isActive ? "bg-[#E91F63] font-bold text-white" : "hover:text-white"}
+        `
                         }
                       >
                         {Sicon}
-                        {slide && <span className="ml-3">Smart Home</span>}
+                        <span
+                          className={`ml-8 transition-all duration-300 ${
+                            slide ? "opacity-100 translate-x-0" : "hidden"
+                          }`}
+                        >
+                          Smart Home
+                        </span>
                       </NavLink>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             }
@@ -202,8 +232,9 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
         {navItems2.map((item, index) => (
           <div
             key={index}
-            className={`flex  h-12 px-5 items-center ${!slide ? "justify-center" : "justify-between"
-              }`}
+            className={`flex  h-12 px-5  items-center ${
+              !slide ? "justify-center" : "justify-between"
+            }`}
           >
             <div className="flex gap-5 items-center">
               <div className="w-5">{item.svg}</div>
@@ -215,9 +246,10 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
           </div>
         ))}
 
-        <hr
-          className={`border border-navItems my-4 ${!slide ? " w-[30%] mx-auto" : "w-100%"
-            }`}
+         <hr
+          className={`border--0 border-navItems my-4 ${
+            !slide ? " w-[30%] mx-auto" : "w-100%"
+          }`}
         />
 
         <h1 className="text-xs font-bold text-navItems my-4">DOCS</h1>
@@ -236,13 +268,16 @@ const Sidebar = ({ setIsOpen, setModalShow }: any) => {
           </div>
         ))}
         <div
-          className="text-navItems cursor-pointer flex items-center px-5 gap-2 hover:text-red-500 transition"
+          className="text-navItems cursor-pointer flex gap-5 items-center px-5  h-12  transition"
           onClick={() => setModalShow(true)}
         >
           {Logout}
-          {slide && <span>Logout</span>}
+          {slide && (
+            <span className="font-roboto text-navItems text-sm  hover:text-gray-500">
+              Logout
+            </span>
+          )}
         </div>
-
       </div>
     </>
   );

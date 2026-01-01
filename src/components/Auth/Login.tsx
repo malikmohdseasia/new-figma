@@ -8,7 +8,7 @@ const Login = ({ setModalShow }:any) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<Boolean>(false);
   const [errors, setErrors] = useState({});
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,41 +39,47 @@ const Login = ({ setModalShow }:any) => {
     }
   };
 
-  const handlePasswordChange = (value:any) => {
-    setPassword(value);
+  const handlePasswordChange = (value: any) => {
+  setPassword(value);
 
-    if (!value) {
-      setErrors((prev) => ({
-        ...prev,
-        password: "Password is required",
-      }));
-    } else if (value.length < 8) {
-      setErrors((prev) => ({
-        ...prev,
-        password: "Password must be at least 8 characters",
-      }));
-    } else if (!/[A-Z]/.test(value)) {
-      setErrors((prev) => ({
-        ...prev,
-        password: "Password must include one uppercase letter",
-      }));
-    } else if (!/[0-9]/.test(value)) {
-      setErrors((prev) => ({
-        ...prev,
-        password: "Password must include one number",
-      }));
-    } else if (!/[@$!%*?&]/.test(value)) {
-      setErrors((prev) => ({
-        ...prev,
-        password: "Password must include one special symbol (@$!%*?&)",
-      }));
-    } else {
-      setErrors((prev) => {
-        const { password, ...rest }:any = prev;
-        return rest;
-      });
-    }
-  };
+  if (!value) {
+    setErrors((prev) => ({
+      ...prev,
+      password: "Password is required",
+    }));
+  } else if (value.length < 8) {
+    setErrors((prev) => ({
+      ...prev,
+      password: "Password must be at least 8 characters",
+    }));
+  } else if (!/[a-z]/.test(value)) {
+    setErrors((prev) => ({
+      ...prev,
+      password: "Password must include one lowercase letter",
+    }));
+  } else if (!/[A-Z]/.test(value)) {
+    setErrors((prev) => ({
+      ...prev,
+      password: "Password must include one uppercase letter",
+    }));
+  } else if (!/[0-9]/.test(value)) {
+    setErrors((prev) => ({
+      ...prev,
+      password: "Password must include one number",
+    }));
+  } else if (!/[@$!%*?&]/.test(value)) {
+    setErrors((prev) => ({
+      ...prev,
+      password: "Password must include one special symbol (@$!%*?&)",
+    }));
+  } else {
+    setErrors((prev) => {
+      const { password, ...rest }: any = prev;
+      return rest;
+    });
+  }
+};
+
 
   const validateForm = () => {
     const err = {};
@@ -160,7 +166,7 @@ const Login = ({ setModalShow }:any) => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-3 text-white/60"
+              className="absolute right-4 top-4 text-white/60"
             >
               {showPassword ? (
                 <EyeOff size={18} />
@@ -204,7 +210,7 @@ const Login = ({ setModalShow }:any) => {
         </form>
 
         <p className="text-center text-white/70 text-sm mt-6">
-          Don’t have an account?{" "}
+          Don’t have an account?
           <span className="underline cursor-pointer">
             Sign up
           </span>

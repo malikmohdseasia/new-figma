@@ -11,11 +11,11 @@ const WelcomeDashboard = () => {
         </p>
 
         <div className="mt-6 flex gap-4 justify-center">
-          <button className="px-5 h-10 rounded-md bg-indigo-600 text-white text-sm hover:bg-indigo-700 transition">
+          <button className="px-5 h-10 rounded-md bg-indigo-600 text-white text-[12px] sm:text-sm hover:bg-indigo-700 transition ">
             Get Started
           </button>
 
-          <button className="px-5 h-10 rounded-md border border-gray-300 text-sm text-gray-700 hover:bg-gray-100 transition">
+          <button className="px-5 h-10 rounded-md border border-gray-300 text-[12px] sm:text-sm text-gray-700 hover:bg-gray-100 transition">
             Learn More
           </button>
         </div>
